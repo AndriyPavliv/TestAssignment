@@ -138,6 +138,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmployeeSales\EmployeeSalesFilterModel.cs" />
+    <Compile Include="Models\EmployeeSales\EmployeeSalesListRowModel.cs" />
+    <Compile Include="Models\EmployeeSales\EmployeeSalesListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +153,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\EmployeeSales\_EmployeeSalesList.cshtml" />
+    <Content Include="Views\Home\EmployeeSales\_EmployeeSalesTable.cshtml" />
+    <Content Include="Views\Home\EmployeeSales\_EmployeeSalesFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -159,7 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\EmployeeSales\" />
     <Folder Include="Scripts\app\" />
   </ItemGroup>
   <ItemGroup>
