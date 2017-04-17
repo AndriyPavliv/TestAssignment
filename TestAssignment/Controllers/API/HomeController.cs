@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Http;
+using TestAssignment.Models.EmployeeSales;
 using TestAssignment.Services;
 
 namespace TestAssignment.Controllers.API
@@ -17,5 +14,19 @@ namespace TestAssignment.Controllers.API
             _dataService = dataService;            
         }
 
+        [HttpPost]
+        public EmployeeSalesListViewModel Search(EmployeeSalesFilterModel filter)
+        {
+            var model = new EmployeeSalesListViewModel { Filter = filter };
+            LoadEmployeeSales(model);
+
+            return model;
+        }
+
+        private void LoadEmployeeSales(EmployeeSalesListViewModel model)
+        {
+            var res = _dataService.LoadEmployeeSales(model.Filter.Name);
+            model.EmployeeSales = res.Select(x => new EmployeeSalesListRowModel(x)).ToList();             
+        }
     }
 }

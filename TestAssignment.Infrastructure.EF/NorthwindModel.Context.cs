@@ -20,21 +20,21 @@ namespace TestAssignment.Infrastructure.EF
         public NorthwindContext()
             : base("name=NorthwindContext")
         {
-        }        
-
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
     
-        public virtual ObjectResult<GetEmployeeSalesInfo_Result> GetEmployeeSalesInfo(string name)
+        public virtual ObjectResult<EmployeeSales> GetEmployeeSalesInfo(string name)
         {
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetEmployeeSalesInfo_Result>("GetEmployeeSalesInfo", nameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeSales>("GetEmployeeSalesInfo", nameParameter);
         }
     }
 }

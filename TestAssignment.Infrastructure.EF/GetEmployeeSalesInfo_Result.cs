@@ -11,7 +11,7 @@ namespace TestAssignment.Infrastructure.EF
 {
     using System;
     
-    public partial class GetEmployeeSalesInfo_Result
+    public partial class EmployeeSales
     {
         public Nullable<long> RowNum { get; set; }
         public int EmployeeID { get; set; }
@@ -19,6 +19,6 @@ namespace TestAssignment.Infrastructure.EF
         public string LastName { get; set; }
         public string Title { get; set; }
         public Nullable<int> NumberOfProductsSold { get; set; }
-        public string RefersTo { get; set; }        
+        public string RefersTo { get; set; }
     }
 }

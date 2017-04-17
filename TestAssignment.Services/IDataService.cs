@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using TestAssignment.Infrastructure.EF;
 
 namespace TestAssignment.Services
 {
     public interface IDataService
     {
-        IList<object> LoadEmployeeSales(string Name);
+        IList<EmployeeSales> LoadEmployeeSales(string Name);
     }
 }

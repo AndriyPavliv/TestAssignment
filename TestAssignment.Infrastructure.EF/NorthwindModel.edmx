@@ -6,8 +6,6 @@
     <edmx:StorageModels>
       <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="GetEmployeeSalesInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="StartAt" Type="int" Mode="In" />
-          <Parameter Name="EndAt" Type="int" Mode="In" />
           <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
         </Function>
         <EntityContainer Name="NorthwindModelStoreContainer" />
@@ -17,14 +15,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="NorthwindContext" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="GetEmployeeSalesInfo" ReturnType="Collection(NorthwindModel.GetEmployeeSalesInfo_Result)">
-            <Parameter Name="StartAt" Mode="In" Type="Int32" />
-            <Parameter Name="EndAt" Mode="In" Type="Int32" />
+          <FunctionImport Name="GetEmployeeSalesInfo" ReturnType="Collection(NorthwindModel.EmployeeSales)">
             <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="GetEmployeeSalesInfo_Result">
-          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+        <ComplexType Name="EmployeeSales">
           <Property Type="Int64" Name="RowNum" Nullable="true" />
           <Property Type="Int32" Name="EmployeeID" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="10" />
@@ -32,7 +27,6 @@
           <Property Type="String" Name="Title" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="NumberOfProductsSold" Nullable="true" />
           <Property Type="String" Name="RefersTo" Nullable="true" MaxLength="31" />
-          <Property Type="Int32" Name="HasMore" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -42,8 +36,7 @@
         <EntityContainerMapping StorageEntityContainer="NorthwindModelStoreContainer" CdmEntityContainer="NorthwindContext" >
           <FunctionImportMapping FunctionImportName="GetEmployeeSalesInfo" FunctionName="NorthwindModel.Store.GetEmployeeSalesInfo">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="NorthwindModel.GetEmployeeSalesInfo_Result">
-                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+              <ComplexTypeMapping TypeName="NorthwindModel.EmployeeSales">
                 <ScalarProperty Name="RowNum" ColumnName="RowNum" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -51,7 +44,6 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="NumberOfProductsSold" ColumnName="NumberOfProductsSold" />
                 <ScalarProperty Name="RefersTo" ColumnName="RefersTo" />
-                <ScalarProperty Name="HasMore" ColumnName="HasMore" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
