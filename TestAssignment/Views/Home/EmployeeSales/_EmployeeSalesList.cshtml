@@ -2,24 +2,29 @@
     ViewBag.Title = "_EmployeeSalesList";
 }
 <div class="container">
-    <div class="row-fluid">
+    <div class="row">
         <h2>Employee Sales</h2>
     </div>
-    <div class="row-fluid">
+    <div class="row">
         <div class="pull-right">
             @{Html.RenderPartial("EmployeeSales/_EmployeeSalesSearch");}
         </div>        
-    </div>
-    <div class="row-fluid">
-        <!-- ko if: EmployeeSales().length != 0-->
+        <div class="clearfix"></div>
+        <hr />
+    </div>      
+    <div class="row">
+        <!-- ko if: EmployeeSalesFiltered().length != 0-->
         <div>
             @{ Html.RenderPartial("EmployeeSales/_EmployeeSalesTable"); }
         </div>
+        <div class="pull-right">
+            @{ Html.RenderPartial("EmployeeSales/_Paging"); }
+        </div>  
         <!-- /ko -->
-        <!-- ko ifnot: EmployeeSales().length != 0-->
+        <!-- ko ifnot: EmployeeSalesFiltered().length != 0-->
         <div>
             @{ Html.RenderPartial("_NoResult"); }
         </div>
         <!-- /ko -->       
-    </div>
+    </div>    
 </div>

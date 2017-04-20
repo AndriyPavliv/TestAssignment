@@ -171,6 +171,7 @@
     <Content Include="Views\Home\EmployeeSales\_EmployeeSalesTable.cshtml" />
     <Content Include="Views\Home\EmployeeSales\_EmployeeSalesSearch.cshtml" />
     <Content Include="Views\Shared\_NoResult.cshtml" />
+    <Content Include="Views\Home\EmployeeSales\_Paging.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

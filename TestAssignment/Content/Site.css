@@ -16,3 +16,24 @@ textarea {
     max-width: 280px;
 }
 
+/*search form*/
+.search-form.navbar-form {
+    padding-right: 0;
+}
+
+    .search-form.navbar-form .form-group {
+        position: relative;        
+    }
+
+    .search-form.navbar-form .form-group input {        
+        padding-left: 40px;
+    }
+
+        .search-form.navbar-form .form-group::before {
+            content: "\e003";
+            position: absolute;
+            display: block;
+            top: 5px;
+            left: 15px;
+            font-family: 'Glyphicons Halflings';
+        }

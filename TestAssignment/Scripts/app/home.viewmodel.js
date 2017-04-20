@@ -17,20 +17,59 @@ function SearchFilter() {
 
 function Filter() {
     var self = this;
+
+    self.HasNextPage = ko.observable(false);
+    self.PageIdx = ko.observable(1);
     
 }
 
 function HomeViewModel(searchFilter, filter) {
     var self = this;
 
+    const pageSize = 5;
+
     self.SearchFilter = searchFilter;
     self.Filter = filter;
 
-    self.EmployeeSales = ko.observableArray([]);
+    self.EmployeeSales = ko.observableArray([]);    
+    
+    self.EmployeeSalesFiltered = ko.computed(function () {
+        var startIdx = (self.Filter.PageIdx() - 1) * pageSize;
+        var endIdx = startIdx + pageSize;
 
+        if (endIdx >= self.EmployeeSales().length) {
+            self.Filter.HasNextPage(false);
+            endIdx = self.EmployeeSales().length;
+        } else {
+            self.Filter.HasNextPage(true);
+        }
+        
+        return self.EmployeeSales().slice(startIdx, endIdx);        
+    });
+
+    self.FirstPage = function () {
+        self.Filter.PageIdx(1);
+    };
+
+    self.Prev = function () {
+        var currentPage = self.Filter.PageIdx();
+        if (currentPage > 1) {
+            self.Filter.HasNextPage(true);
+            self.Filter.PageIdx(currentPage - 1);
+        }
+    };
+
+    self.Next = function () {
+        var currentPage = self.Filter.PageIdx();
+        if (self.Filter.HasNextPage()) {
+            self.Filter.HasNextPage(false);
+            self.Filter.PageIdx(currentPage + 1);
+        }
+    };
     
     self.ApplySearch = function () {    
         if (self.SearchFilter.Name()) {
+            self.Filter.PageIdx(1);
             self.Load();
         }        
     };
@@ -42,6 +81,7 @@ function HomeViewModel(searchFilter, filter) {
     self.SearchFilter.Name.subscribe(function (newValue) {
         if (!newValue) {
             self.ClearSearch();
+            self.Filter.PageIdx(1);
             self.Load();
         }
     });

@@ -1,0 +1,16 @@
+﻿<ul class="pagination">
+    <li data-bind="css : { 'disabled' : (Filter.PageIdx() <= 1) }">
+        <a href="#" title="Previous Page" data-bind="click : Prev, css : { 'active' : Filter.PageIdx() > 1 }" class="paging">&lt;</a>
+    </li>
+    <li>
+        <span>
+            <a title="First" data-bind="click : FirstPage, css : { 'active' : Filter.PageIdx() > 1 }" href="#">1</a>
+            <span data-bind="visible: (Filter.PageIdx() > 1)" class="muted">...</span>
+            <b><a title="Current" data-bind="visible: Filter.PageIdx() > 1, text: Filter.PageIdx(), css : { 'active' : Filter.PageIdx() > 1 }" href="#">1</a></b>
+            <span data-bind="visible: Filter.HasNextPage()" class="muted">...</span>
+        </span>
+    </li>
+    <li data-bind="css : { 'disabled' : !Filter.HasNextPage() }">
+        <a href="#" title="Next" data-bind="click : Next, css : { 'active' : !Filter.HasNextPage() }">&gt;</a>
+    </li>
+</ul>
