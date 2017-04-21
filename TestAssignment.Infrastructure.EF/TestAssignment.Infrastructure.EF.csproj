@@ -74,6 +74,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>NorthwindModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="NorthwindModel.edmx.diagram">
       <DependentUpon>NorthwindModel.edmx</DependentUpon>
     </None>

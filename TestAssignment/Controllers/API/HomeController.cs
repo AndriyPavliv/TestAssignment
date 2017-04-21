@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Http;
 using TestAssignment.Models.EmployeeSales;
 using TestAssignment.Services;
@@ -25,8 +26,9 @@ namespace TestAssignment.Controllers.API
 
         private void LoadEmployeeSales(EmployeeSalesListViewModel model)
         {
-            var res = _dataService.LoadEmployeeSales(model.Filter.Name);
-            model.EmployeeSales = res.Select(x => new EmployeeSalesListRowModel(x)).ToList();             
+            var res = _dataService.LoadEmployeeSales(model.Filter.PageIdx, model.Filter.PageSize, model.Filter.Name);
+            model.EmployeeSales = res.Select(x => new EmployeeSalesListRowModel(x)).ToList();
+            model.HasMore = res.Any() && Convert.ToBoolean(res.First().HasMore);
         }
     }
 }

@@ -20,5 +20,6 @@ namespace TestAssignment.Infrastructure.EF
         public string Title { get; set; }
         public Nullable<int> NumberOfProductsSold { get; set; }
         public string RefersTo { get; set; }
+        public int HasMore { get; set; }
     }
 }

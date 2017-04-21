@@ -6,11 +6,11 @@ namespace TestAssignment.Services.Impl
 {
     public class DataService : IDataService
     {
-        public IList<EmployeeSales> LoadEmployeeSales(string name)
+        public IList<EmployeeSales> LoadEmployeeSales(int pageIdx, int pageSize, string name)
         {
             using (NorthwindContext context = new NorthwindContext())
             {
-                return context.GetEmployeeSalesInfo(name).ToList();                
+                return context.GetEmployeeSalesInfo((pageIdx - 1) * pageSize, pageIdx * pageSize, name).ToList();                
             }
         }
     }

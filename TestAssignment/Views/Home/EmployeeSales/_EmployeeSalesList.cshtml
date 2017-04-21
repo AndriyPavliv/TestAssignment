@@ -13,7 +13,7 @@
         <hr />
     </div>      
     <div class="row">
-        <!-- ko if: EmployeeSalesFiltered().length != 0-->
+        <!-- ko if: EmployeeSales().length != 0-->
         <div>
             @{ Html.RenderPartial("EmployeeSales/_EmployeeSalesTable"); }
         </div>
@@ -21,7 +21,7 @@
             @{ Html.RenderPartial("EmployeeSales/_Paging"); }
         </div>  
         <!-- /ko -->
-        <!-- ko ifnot: EmployeeSalesFiltered().length != 0-->
+        <!-- ko ifnot: EmployeeSales().length != 0-->
         <div>
             @{ Html.RenderPartial("_NoResult"); }
         </div>

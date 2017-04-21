@@ -28,13 +28,21 @@ namespace TestAssignment.Infrastructure.EF
         }
     
     
-        public virtual ObjectResult<EmployeeSales> GetEmployeeSalesInfo(string name)
+        public virtual ObjectResult<EmployeeSales> GetEmployeeSalesInfo(Nullable<int> startIdx, Nullable<int> endIdx, string name)
         {
+            var startIdxParameter = startIdx.HasValue ?
+                new ObjectParameter("StartIdx", startIdx) :
+                new ObjectParameter("StartIdx", typeof(int));
+    
+            var endIdxParameter = endIdx.HasValue ?
+                new ObjectParameter("EndIdx", endIdx) :
+                new ObjectParameter("EndIdx", typeof(int));
+    
             var nameParameter = name != null ?
                 new ObjectParameter("Name", name) :
                 new ObjectParameter("Name", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeSales>("GetEmployeeSalesInfo", nameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<EmployeeSales>("GetEmployeeSalesInfo", startIdxParameter, endIdxParameter, nameParameter);
         }
     }
 }

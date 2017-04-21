@@ -6,6 +6,7 @@ namespace TestAssignment.Models.EmployeeSales
     {
         public EmployeeSalesFilterModel Filter { get; set; }
         public List<EmployeeSalesListRowModel> EmployeeSales { get; set; }
+        public bool HasMore { get; set; }
 
         public EmployeeSalesListViewModel()
         {

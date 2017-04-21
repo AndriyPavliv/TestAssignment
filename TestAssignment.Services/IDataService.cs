@@ -5,6 +5,6 @@ namespace TestAssignment.Services
 {
     public interface IDataService
     {
-        IList<EmployeeSales> LoadEmployeeSales(string Name);
+        IList<EmployeeSales> LoadEmployeeSales(int pageIdx, int pageSize, string Name);
     }
 }

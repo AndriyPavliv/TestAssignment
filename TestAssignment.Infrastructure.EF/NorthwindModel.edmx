@@ -6,6 +6,8 @@
     <edmx:StorageModels>
       <Schema Namespace="NorthwindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="GetEmployeeSalesInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartIdx" Type="int" Mode="In" />
+          <Parameter Name="EndIdx" Type="int" Mode="In" />
           <Parameter Name="Name" Type="nvarchar(max)" Mode="In" />
         </Function>
         <EntityContainer Name="NorthwindModelStoreContainer" />
@@ -16,6 +18,8 @@
       <Schema Namespace="NorthwindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="NorthwindContext" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="GetEmployeeSalesInfo" ReturnType="Collection(NorthwindModel.EmployeeSales)">
+            <Parameter Name="StartIdx" Mode="In" Type="Int32" />
+            <Parameter Name="EndIdx" Mode="In" Type="Int32" />
             <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -27,6 +31,7 @@
           <Property Type="String" Name="Title" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="NumberOfProductsSold" Nullable="true" />
           <Property Type="String" Name="RefersTo" Nullable="true" MaxLength="31" />
+          <Property Type="Int32" Name="HasMore" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -44,6 +49,7 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="NumberOfProductsSold" ColumnName="NumberOfProductsSold" />
                 <ScalarProperty Name="RefersTo" ColumnName="RefersTo" />
+                <ScalarProperty Name="HasMore" ColumnName="HasMore" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
